@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Roboto:wght@300;400&family=Square+Peg&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/style.css">
+    <title>Encrypt-ER</title>
+</head>
+<body>
+    <header>
+        <span class="header__element logo"><img src="imgs/logo.png" alt="" id="logo"> NCRYPT-ER</span>
+        <span class="material-icons-outlined header__element settings">settings</span>
+    </header>
+
+    
+
+    <main>
+        <section class="decoder">
+            <textarea placeholder="Ingrese el texto aquí"></textarea>
+            <div class="btns__decoder">
+                <button class="btn" id="btn__code">Code</button>
+                <button class="btn" id="btn__decode">Decode</button>
+            </div>
+        </section>
+
+        <section class="output">
+            <div class="output__result">
+                <div class="standBy__container">
+                    <img src="imgs/stanBy_img__257x286.png" id="standBy__img">
+                    <h3 class="standBy__text">No se ha encontrado ningún texto aún</h3>
+                    <p class="standBy__text">Ingrese un texto y de click en Code o Decode</p>
+                    <div class="burbuja"></div>
+                    <div class="burbuja"></div>
+                    <div class="burbuja"></div>
+                    <div class="burbuja"></div>
+                    <div class="burbuja"></div>
+                    <div class="burbuja"></div>
+                    <div class="burbuja"></div>
+                    <div class="burbuja"></div>
+                </div>
+                <p class="output__msg"></p>
+            </div>
+            <div class="btns__output">
+                <button class="btn" id="btn__copy">Copy</button>
+                <button class="btn" id="btn__clear">Clear</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer__legend">
+            <p>Diseñado y desarrollado por Alan González. - 2022</p>
+        </div>
+        <div class="contact__container">
+            <a href="#" id="contact__email"><span class="material-icons-outlined icon__contact">email</span></a>
+            <a href="#" id="contact__whatsapp"><span class="material-icons-outlined icon__contact">whatsapp</span></a>
+        </div>
+    </footer>
+
+    <script src="script/script.js"></script>
+    <script src="script/decoder.js"></script>
+</body>
+</html>
