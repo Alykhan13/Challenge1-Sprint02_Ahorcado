@@ -1,0 +1,361 @@
+:root {
+    --font-family-1: 'Roboto', sans-serif;
+    --font-family-2: 'Gochi Hand', cursive;
+    --font-family-mono: 'Roboto Mono', monospace;
+
+    --font-size-1: 1em;
+    --font-size-2: 0.5em;
+    --font-size-3: 1.2em;
+    --font-size-play: 1.6em;
+    --font-size-game-1: 2.2em;
+    --font-size-game-2: 2em;
+
+    --color-60: #3C4A3F;
+    --color-30: #9EAFA2;
+    --color-10: #23D872;
+    --color-sub: #c08b64;
+    --color-font-light: #EAECE0;
+    --color-font-dark: #1f2621;
+
+    --color-30-hover: #828d84;
+    --color-10-hover: #1ead5c;
+
+    --imagen-fondo: url("../imgs/bg_2600x1880.jpg");
+}
+
+/* ----------------------------------------------------------- */
+/* ----------------- COLOR SECTION: START -------------------- */
+/* ----------------------------------------------------------- */
+
+body,
+button {
+    color: var(--color-font-dark);
+}
+
+.secondary-screen {
+    background-color: var(--color-60);
+}
+
+.btn {
+    background-color: var(--color-30);
+}
+
+.btn:hover {
+    background-color: var(--color-30-hover);
+}
+
+.btns__field .btn:first-child {
+    background-color: var(--color-10);
+}
+
+.btns__field .btn:first-child:hover:not(.game__btns__field .btn:first-child:hover) {
+    box-shadow: 0 0 7px var(--color-10);
+}
+
+.game__btns__field .btn:first-child {
+    background-color: var(--color-30);
+}
+
+.game__btns__field .btn:first-child:hover {
+    background-color: var(--color-30-hover);
+}
+
+#game__btns__field .btn-win {
+    background-color: var(--color-10);
+}
+
+#game__btns__field .btn-lose {
+    background-color: var(--color-sub);
+}
+
+.game__btns__field .btn-lose:first-child:hover {
+    box-shadow: 0 0 7px var(--color-sub);
+}
+
+.game__btns__field .btn-win:first-child:hover {
+    box-shadow: 0 0 7px var(--color-10);
+}
+
+/* ----------------------------------------------------------- */
+/* ----------------- COLOR SECTION:  END  -------------------- */
+/* ----------------------------------------------------------- */
+
+li {
+    list-style: none;
+    display: inline;
+}
+
+body {
+    font-family: var(--font-family-1);
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+::selection {
+    color: transparent;
+}
+
+.logo__field {
+    display: inline-block;
+    margin-top: 20px;
+    position: sticky;
+    z-index: 5;
+}
+
+.logo img {
+    width: 60px;
+}
+
+.btn {
+    width: 200px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+}
+
+.btn__play {
+    font-family: var(--font-family-2);
+    font-size: var(--font-size-play);
+}
+
+.overlay__field {
+    z-index: 1;
+}
+
+.add-words__field {
+    z-index: 2;
+}
+
+.game__field {
+    z-index: 0;
+}
+
+.overlay__field,
+.add-words__field,
+.game__field {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 1s ease;
+}
+
+.overlay__field {
+    transform: translateY(0%);
+}
+
+.overlay--hidden {
+    transform: translateY(-100%);
+}
+
+.add-words__field {
+    transform: translateX(0%);
+}
+
+.add-words--hidden {
+    transform: translateX(-100%);
+}
+
+.overlay__draw__field img {
+    width: 150px;
+    position: relative;
+    top: -80px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 40px;
+}
+
+.footer p {
+    color: var(--color-font-light);
+}
+
+.btns__field {
+    display: inline-block;
+}
+
+.btns__field .btn {
+    display: block;
+}
+
+.btns__field .btn:first-child {
+    margin-bottom: 5px;
+}
+
+.input__field {
+    width: 280px;
+    height: 80px;
+}
+
+.input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 50%;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    padding-left: 3px;
+    font-size: var(--font-size-3);
+}
+
+.game__field {
+    background-image: var(--imagen-fondo);
+}
+
+.game__display {
+    width: 100%;
+    height: 80%;
+}
+
+.drawing__field {
+    padding-top: 5px;
+    width: 375px;
+    height: 375px;
+    position: relative;
+}
+
+.endgame {
+    font-family: var(--font-family-2);
+    font-size: var(--font-size-game-2);
+    display: block;
+    text-align: center;
+    padding-top: 25px;
+}
+
+.win {
+    color: var(--color-10);
+}
+
+.lose {
+    color: var(--color-sub);
+}
+
+.drawing__field {
+    margin: 0 auto;
+}
+
+.drawing__field img {
+    position: absolute;
+}
+
+.line01 {
+    bottom: 0;
+    left: 0;
+}
+
+.line02 {
+    bottom: -140px;
+    left: 130px;
+}
+
+.line03 {
+    top: 80px;
+    left: 60px;
+}
+
+.line04 {
+    top: 50px;
+    left: 230px;
+}
+
+.line05 {
+    top: 90px;
+    left: 180px;
+}
+
+.line06 {
+    bottom: 80px;
+    left: 170px;
+}
+
+.line07 {
+    bottom: 80px;
+    left: 230px;
+}
+
+.line08 {
+    bottom: 90px;
+    left: 230px;
+}
+
+.line09 {
+    bottom: 40px;
+    left: 190px;
+}
+
+.line10 {
+    bottom: 40px;
+    left: 225px;
+}
+
+.word__field {
+    height: 30%;
+    font-family: var(--font-family-2);
+    color: var(--color-font-light);
+}
+
+.correct-word__display {
+    height: 40%;
+    text-align: center;
+    padding-top: 20px;
+    font-weight: bold;
+    font-size: var(--font-size-game-1);
+    font-size-adjust: 1;
+}
+
+.correct-word__ul li{
+    display: inline-block;
+    width: 30px;
+    margin-right: 10px;
+    border-bottom: 3px solid var(--color-font-light);
+}
+
+.correct-word__ul li:last-child {
+    margin-right: none;
+}
+
+.letter--hidden {
+    color: transparent;
+}
+
+@media screen and (max-width: 480px) {
+   .correct-word__ul .large-word__li {
+    width: 23px;
+    margin-right: 8px;
+    font-size: 1em;
+    } 
+}
+
+.wrong-letters__display {
+    text-align: center;
+    height: 60%;
+    padding: 0 2px;
+    padding-top: 10px;
+    font-size: var(--font-size-game-2);
+}
+
+.game__btns__field {
+    padding-top: 10px;
+}
+
+.game__btns__field .btn {
+    width: 160px;
+    display: inline-block;
+}
+
+.game__btns__field .btn:first-child {
+    margin-right: 15px;
+}
+
+.hidden {
+    display: none;
+}

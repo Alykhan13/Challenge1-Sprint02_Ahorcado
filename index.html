@@ -6,64 +6,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Roboto:wght@300;400&family=Square+Peg&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="style/reset.css">
-    <link rel="stylesheet" href="style/style.css">
-    <title>Encrypt-ER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Roboto&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="imgs/favicon/favicon.png" type="image/x-icon">
+    <link rel="icon" href="imgs/favicon/favicon.png" type="image/x-icon">
+    <title>Challenge 02 - Juego del ahorcado</title>
 </head>
 <body>
-    <header>
-        <span class="header__element logo"><img src="imgs/logo.png" alt="" id="logo"> NCRYPT-ER</span>
-        <span class="material-icons-outlined header__element settings">settings</span>
+    <header class="logo__field">
+        <div class="logo">
+            <img src="imgs/logo_white.png" alt="Logo">
+        </div>
     </header>
 
-    
+    <section id="overlay__field" class="overlay__field secondary-screen">
+        <div class="overlay__draw__field">
+            <img src="imgs/hangman.png" alt="Hangman draw">
+        </div>
+        <div class="overlay__btns__field btns__field">
+            <button id="btn__play" class="btn btn__play">
+                JUGAR
+            </button>
+            <button id="btn__add-words" class="btn">
+                Agregar palabra
+            </button>
+        </div>
+        <footer class="footer">
+            <p>&copy; Diseñado y desarrollado por Alan G. - 2022</p>
+        </footer>
+    </section>
 
-    <main>
-        <section class="decoder">
-            <textarea placeholder="Ingrese el texto aquí"></textarea>
-            <div class="btns__decoder">
-                <button class="btn" id="btn__code">Code</button>
-                <button class="btn" id="btn__decode">Decode</button>
-            </div>
-        </section>
+    <section id="add-words__field" class="add-words__field secondary-screen add-words--hidden">
+        <div class="input__field">
+            <input type="text" id="input" class="input" placeholder="Escribir palabra (max 12 letras)" autocomplete="off">
+        </div>
+        <div class="input__btns__field btns__field">
+            <button id="btn__add" class="btn">
+                Agregar palabra
+            </button>
+            <button id="btn__back" class="btn">
+                Regresar
+            </button>
+        </div>
+    </section>
 
-        <section class="output">
-            <div class="output__result">
-                <div class="standBy__container">
-                    <img src="imgs/stanBy_img__257x286.png" id="standBy__img">
-                    <h3 class="standBy__text">No se ha encontrado ningún texto aún</h3>
-                    <p class="standBy__text">Ingrese un texto y de click en Code o Decode</p>
-                    <div class="burbuja"></div>
-                    <div class="burbuja"></div>
-                    <div class="burbuja"></div>
-                    <div class="burbuja"></div>
-                    <div class="burbuja"></div>
-                    <div class="burbuja"></div>
-                    <div class="burbuja"></div>
-                    <div class="burbuja"></div>
+    <main class="main">
+        <section class="game__field secondary-screen">
+            <div class="game__display">
+                <div class="drawing__field">
+                    <span id="endgame" class="endgame"></span>
+                    <img src="imgs/lines/line01_350x365.png" alt="" id="line1" class="hangman__draw line01">
+                    <img src="imgs/lines/line02_350x365.png" alt="" id="line2" class="hangman__draw line02">
+                    <img src="imgs/lines/line03_350x365.png" alt="" id="line3" class="hangman__draw line03">
+                    <img src="imgs/lines/line04_350x365.png" alt="" id="line4" class="hangman__draw line04">
+                    <img src="imgs/lines/line05_350x365.png" alt="" id="line5" class="hangman__draw line05">
+                    <img src="imgs/lines/line06_350x365.png" alt="" id="line7" class="hangman__draw line06">
+                    <img src="imgs/lines/line07_350x365.png" alt="" id="line6" class="hangman__draw line07">
+                    <img src="imgs/lines/line08_350x365.png" alt="" id="line8" class="hangman__draw line08">
+                    <img src="imgs/lines/line09_350x365.png" alt="" id="line9" class="hangman__draw line09">
+                    <img src="imgs/lines/line10_350x365.png" alt="" id="line10" class="hangman__draw line10">
                 </div>
-                <p class="output__msg"></p>
+                <div class="word__field">
+                    <div class="correct-word__display">
+                        <ul id="correct-word__ul" class="correct-word__ul">
+                            <!-- <li id="correct-word__li"><span class="letter letter--hidden">H</span></li> -->
+                        </ul>
+                    </div>
+                    <div id="wrong-letters__display" class="wrong-letters__display">
+                        <!-- A B C D E F G H I J K L M N Ñ O P Q R S T U V W X Y Z  -->
+                        <!-- a b c d e f g h i j k l m n ñ o p q r s t u v w x y z  -->
+                    </div>
+                </div>
             </div>
-            <div class="btns__output">
-                <button class="btn" id="btn__copy">Copy</button>
-                <button class="btn" id="btn__clear">Clear</button>
+            <div id="game__btns__field" class="game__btns__field btns__field">
+                <button id="btn__restart" class="btn btn-win">
+                    Reiniciar
+                </button>
+                <button id="btn__menu" class="btn">
+                    Menu principal
+                </button>
             </div>
         </section>
+        
     </main>
-
-    <footer>
-        <div class="footer__legend">
-            <p>Diseñado y desarrollado por Alan González. - 2022</p>
-        </div>
-        <div class="contact__container">
-            <a href="#" id="contact__email"><span class="material-icons-outlined icon__contact">email</span></a>
-            <a href="#" id="contact__whatsapp"><span class="material-icons-outlined icon__contact">whatsapp</span></a>
-        </div>
-    </footer>
-
-    <script src="script/script.js"></script>
-    <script src="script/decoder.js"></script>
+    
+    <script src="js/script.js"></script>
 </body>
 </html>
