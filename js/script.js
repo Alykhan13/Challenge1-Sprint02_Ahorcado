@@ -7,6 +7,7 @@ const btnMenu = document.getElementById("btn__menu");
 const input = document.getElementById("input");
 
 let chosenWord;
+let chosenWordBackup;
 let lifes;
 let wordSize;
 let wordCompleted;
@@ -71,6 +72,16 @@ function loadWord() {
     const ulElement = document.getElementById("correct-word__ul");
     ulElement.innerHTML = "";
     chosenWord = chooseRandomWord().toUpperCase();
+    chosenWordBackup = "";
+
+    for(let i=0;i<chosenWord.length;i++) {
+        if(chosenWord.charAt(i) == "Ñ") {
+            chosenWordBackup += "N";
+            console.log("Palabra: " + chosenWord + "...cambiando ñ por n");
+        }
+        chosenWordBackup += chosenWord.charAt(i);   
+    }
+
     //let chosenWord = "WWW"
     console.log(chosenWord);
 
@@ -191,10 +202,13 @@ function hearingLetters(e) {
         }
 
         if(!alreadyUsed) {
-            if(!letter.test(chosenWord)) {
+            if(!letter.test(chosenWordBackup)) {
                 lifes--;
                 showLines();
                 showWrongLetter(e.key);
+                if(e.key == "n") 
+                    showWrongLetter("ñ");
+
                 if(lifes == 0) {
                     removeEventListener("keypress",hearingLetters);
                     showEndgamePhrase();
@@ -202,6 +216,8 @@ function hearingLetters(e) {
                 }
             } else {
                 showCorrectLetter(e.key);
+                if(e.key == "n") 
+                    showCorrectLetter("ñ");
                 if(wordCompleted == wordSize) {
                     removeEventListener("keypress",hearingLetters);
                     showEndgamePhrase();
@@ -236,8 +252,8 @@ btnAdd.addEventListener("click", function(e) {
         alert("No hay palabra para agregar");
     } else {
         for(let i=0;i<wordInput.length;i++) {
-            if( !(wordInput.charAt(i) >= "a" && wordInput.charAt(i) <= "z") &&
-                !(wordInput.charAt(i) >= "A" && wordInput.charAt(i) <= "Z")) {
+            if( !(wordInput.charAt(i) >= "a" && wordInput.charAt(i) <= "z" || wordInput.charAt(i) == "ñ") &&
+                !(wordInput.charAt(i) >= "A" && wordInput.charAt(i) <= "Z" || wordInput.charAt(i) == "Ñ")) {
                     wordValidation = false;
                     break;
             }
