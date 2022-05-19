@@ -13,13 +13,14 @@ let wordCompleted;
 let lettersUsed = [];
 
 let words = [
-    "gis", "luz", "pus", "res", "mes", "sed",
-    "mapa", "chat", "pala", "casa", "mano", "sapo", "pavo",
-    "calor", "temor", "pavor", "letra", "jugar",
-    "mueble", "muelle", "cabeza", "cereza",
-    "camello", "rodilla", "ardilla",
-    "zoologico",
-    "locomotora"
+    "gis", "luz", "pus", "res", "mes", "sed", "dia", "rio", "rol", "paz", "don", "rey", "ver", "fin", "pan", "eje", "set", "ser",
+    "mapa", "chat", "pala", "casa", "mano", "sapo", "pavo", "jade", "gato", "nuez", "hilo", "bota", "filo", "fila", "moño", "mono",
+    "calor", "temor", "pavor", "letra", "jugar", "perro", "cielo", "asilo", "arete", "cerdo", "caido", "clavo", "color", "playa", "rueda", "añejo", "araña",
+    "mueble", "muelle", "cabeza", "cereza", "collar", "cuello", "arista", "amplio", "antojo", "conejo", "activo", "tesoro", "pozole", "grieta", "pintar", "anillo", 
+    "camello", "rodilla", "ardilla", "artista", "pintura", "pulsera", "acierto", "establo", "ampliar", "caminar", "patinar", "aderezo", "cocinar", "botella", "medalla", "cerveza",
+    "paradoja", "pelicula", "estrella", "jitomate", "cabalgar", "clausula", "camaleon", "elefante", "maternal", "cuchillo", "mariposa", "carnaval", "respirar", "parpadeo", "paralelo",
+    "zoologico", "almanaque", "brillante", "mandarina", "kilogramo", "inhospito", "enterrado", "asteroide", "chocolate", "demoniaco", "carretera", "antebrazo", "serpiente", "aleatorio", "academico", 
+    "locomotora", "orfelinato", "matematico", "carretilla", "cervatillo", "cofundador", "concepcion", "monosilaba", "radiactivo", "topografia", "tipografia", "abecedario", "abominable", "contrapeso", "contraseña", "convencion"
 ];
 let lastWords = [];
 
@@ -63,7 +64,7 @@ function addWord(newWord) {
             repeated = true;
     }
 
-    if(!repeated) words.push(newWord);
+    if(!repeated) words.push(newWord.toLowerCase());
 }
 
 function loadWord() {
@@ -110,15 +111,23 @@ function showWrongLetter(letterInput) {
     wrongLettersDisplay.innerHTML += letterInput.toUpperCase() + " ";
 }
 
+function showWord() {
+    let letterHidden = document.querySelectorAll(".letter");
+
+    for(let i=0;i<letterHidden.length;i++) {
+        letterHidden[i].classList.remove("letter--hidden");
+    }
+}
+
 function showCorrectLetter(letterInput) {
     let letterHidden = document.querySelectorAll(".letter");
-    
-    letterHidden.forEach(function(letter) {
-        if(letterInput.toUpperCase() == letter.textContent) {
-            letter.classList.remove("letter--hidden");
+
+    for(let i=0;i<letterHidden.length;i++) {
+        if(letterInput.toUpperCase() == letterHidden[i].textContent) {
+            letterHidden[i].classList.remove("letter--hidden");
             wordCompleted++;
         }
-    });
+    }
 }
 
 function showLines() {
@@ -144,9 +153,9 @@ function restartDraw() {
     endGamePhrase.classList.remove("lose");
     endGamePhrase.classList.remove("win");
 
-    hangmanDraw.forEach(function(line) {
-        line.classList.add("hidden");
-    });
+    for(let i=0;i<hangmanDraw.length;i++) {
+        hangmanDraw[i].classList.add("hidden");
+    }
 }
 
 function restartWrongLetters() {
@@ -169,7 +178,6 @@ function loadGame() {
 function hearingLetters(e) {
     
     let alreadyUsed = false;
-    console.log("Letras usadas, entrada: " + lettersUsed);
 
     if(e.key >= "a" && e.key <= "z") {
         console.log(e.key);
@@ -190,8 +198,9 @@ function hearingLetters(e) {
                 if(lifes == 0) {
                     removeEventListener("keypress",hearingLetters);
                     showEndgamePhrase();
+                    showWord();
                 }
-            } else { //hacer una iteracion para comprobar todas las letras y ver si hay coincidencia
+            } else {
                 showCorrectLetter(e.key);
                 if(wordCompleted == wordSize) {
                     removeEventListener("keypress",hearingLetters);
@@ -199,7 +208,7 @@ function hearingLetters(e) {
                 }
             }
             lettersUsed.push(e.key);
-            console.log("Letras usadas, salida: " + lettersUsed);
+            console.log("Letras usadas: " + lettersUsed);
         }
     }
 }
@@ -219,15 +228,33 @@ btnBack.addEventListener("click", function(e) {
 });
 
 btnAdd.addEventListener("click", function(e) {
+    e.preventDefault();
+    let wordInput = input.value;
+    let wordValidation = true;
+
     if(!input.value) {
         alert("No hay palabra para agregar");
-    }
-    if(input.value && (input.value.length < 2 || input.value.length > 10)) {
-        alert("La palabra debe contener de 2 a 10 caracteres");
-    }
-    if(input.value.length >= 2 && input.value.length <= 10) {
-        addWord(input.value);
-        alert("Palabra agregada con éxito");
+    } else {
+        for(let i=0;i<wordInput.length;i++) {
+            if( !(wordInput.charAt(i) >= "a" && wordInput.charAt(i) <= "z") &&
+                !(wordInput.charAt(i) >= "A" && wordInput.charAt(i) <= "Z")) {
+                    wordValidation = false;
+                    break;
+            }
+        }
+
+        if(!wordValidation) {
+            alert("La palabra solo debe contener letras");
+        } else {
+            if( wordInput.length < 2 || 
+                wordInput.length > 10) {
+                alert("La palabra debe contener de 2 a 10 letras");
+            }
+            if(wordInput.length >= 2 && wordInput.length <= 10) {
+                addWord(input.value);
+                alert("Palabra agregada con éxito");
+            }
+        }
     }
 
     input.value = "";
@@ -244,6 +271,7 @@ btnPlay.addEventListener("click", function(e) {
 });
 
 btnMenu.addEventListener("click", function(e) {
+    e.preventDefault();
     const overlay = document.getElementById("overlay__field");
     overlay.classList.remove("overlay--hidden");
 
