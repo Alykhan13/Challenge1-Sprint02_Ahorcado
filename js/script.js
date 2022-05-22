@@ -16,10 +16,10 @@ let lettersUsed = [];
 let words = [
     "gis", "luz", "pus", "res", "mes", "sed", "dia", "rio", "rol", "paz", "don", "rey", "ver", "fin", "pan", "eje", "set", "ser",
     "mapa", "chat", "pala", "casa", "mano", "sapo", "pavo", "jade", "gato", "nuez", "hilo", "bota", "filo", "fila", "moño", "mono",
-    "calor", "temor", "pavor", "letra", "jugar", "perro", "cielo", "asilo", "arete", "cerdo", "caido", "clavo", "color", "playa", "rueda", "añejo", "araña",
-    "mueble", "muelle", "cabeza", "cereza", "collar", "cuello", "arista", "amplio", "antojo", "conejo", "activo", "tesoro", "pozole", "grieta", "pintar", "anillo", 
-    "camello", "rodilla", "ardilla", "artista", "pintura", "pulsera", "acierto", "establo", "ampliar", "caminar", "patinar", "aderezo", "cocinar", "botella", "medalla", "cerveza",
-    "paradoja", "pelicula", "estrella", "jitomate", "cabalgar", "clausula", "camaleon", "elefante", "maternal", "cuchillo", "mariposa", "carnaval", "respirar", "parpadeo", "paralelo",
+    "calor", "temor", "pavor", "letra", "jugar", "cerro", "perro", "cielo", "asilo", "arete", "cerdo", "caido", "clavo", "color", "playa", "rueda", "añejo", "araña",
+    "mueble", "muelle", "fuelle", "costal", "postal", "cabeza", "cereza", "collar", "cuello", "arista", "amplio", "antojo", "conejo", "activo", "tesoro", "pozole", "grieta", "pintar", "anillo", 
+    "camello", "rodilla", "ardilla", "artista", "pintura", "palmera", "pulsera", "acierto", "establo", "ampliar", "caminar", "patinar", "aderezo", "cocinar", "botella", "medalla", "cerveza",
+    "paradoja", "pelicula", "estrella", "estrecha", "jitomate", "kilowattP", "cabalgar", "clausula", "camaleon", "elefante", "maternal", "cuchillo", "mariposa", "carnaval", "respirar", "parpadeo", "paralelo",
     "zoologico", "almanaque", "brillante", "mandarina", "kilogramo", "inhospito", "enterrado", "asteroide", "chocolate", "demoniaco", "carretera", "antebrazo", "serpiente", "aleatorio", "academico", 
     "locomotora", "orfelinato", "matematico", "carretilla", "cervatillo", "cofundador", "concepcion", "monosilaba", "radiactivo", "topografia", "tipografia", "abecedario", "abominable", "contrapeso", "contraseña", "convencion"
 ];
@@ -190,13 +190,15 @@ function hearingLetters(e) {
     
     let alreadyUsed = false;
 
-    if(e.key >= "a" && e.key <= "z") {
+    let expresion = /^[a-zA-Z]$/; /* e.key >= "a" && e.key <= "z" || e.key >= "A" && e.key <= "Z" */ 
+
+    if(expresion.test(e.key)) {
         console.log(e.key);
 
         let letter = new RegExp(e.key,"i");
 
         for(let i=0;i<lettersUsed.length;i++) {
-            if(e.key == lettersUsed[i]) {
+            if(e.key.toLowerCase() == lettersUsed[i]) {
                 alreadyUsed = true;
             }
         }
@@ -206,7 +208,7 @@ function hearingLetters(e) {
                 lifes--;
                 showLines();
                 showWrongLetter(e.key);
-                if(e.key == "n") 
+                if(e.key == "n" || e.key == "N") 
                     showWrongLetter("ñ");
 
                 if(lifes == 0) {
@@ -223,7 +225,7 @@ function hearingLetters(e) {
                     showEndgamePhrase();
                 }
             }
-            lettersUsed.push(e.key);
+            lettersUsed.push(e.key.toLowerCase());
             console.log("Letras usadas: " + lettersUsed);
         }
     }

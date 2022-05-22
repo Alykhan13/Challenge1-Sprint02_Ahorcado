@@ -327,14 +327,6 @@ body {
     color: transparent;
 }
 
-@media screen and (max-width: 480px) {
-   .correct-word__ul .large-word__li {
-    width: 23px;
-    margin-right: 8px;
-    font-size: 1em;
-    } 
-}
-
 .wrong-letters__display {
     text-align: center;
     height: 60%;
@@ -355,6 +347,20 @@ body {
 .game__btns__field .btn:first-child {
     margin-right: 15px;
 }
+
+@media screen and (max-width: 480px) {
+    .correct-word__ul .large-word__li {
+     width: 23px;
+     margin-right: 8px;
+     font-size: 1em;
+     } 
+ 
+    .wrong-letters__display {
+        background-color: #1ead5c;
+        width: 80%;
+        margin: 0 auto;
+    }
+ }
 
 .hidden {
     display: none;
